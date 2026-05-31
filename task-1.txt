@@ -1,0 +1,60 @@
+src/
+│
+├── app/
+│   ├── (auth)/
+│   │   ├── login/
+│   │   │   └── page.tsx
+│   │   ├── register/
+│   │   │   └── page.tsx
+│   │   ├── forgot-password/
+│   │   │   └── page.tsx
+│   │   └── reset-password/
+│   │       └── [token]/
+│   │           └── page.tsx
+│   │
+│   ├── (dashboard)/
+│   │   ├── dashboard/
+│   │   │   └── page.tsx
+│   │   ├── profile/
+│   │   │   └── page.tsx
+│   │   ├── appointments/
+│   │   ├── doctors/
+│   │   ├── patients/
+│   │   └── prescriptions/
+│   │
+│   ├── layout.tsx
+│   └── page.tsx
+│
+├── features/
+│   │
+│   ├── auth/
+│   │   ├── api/
+│   │   ├── hooks/
+│   │   ├── schemas/
+│   │   ├── types/
+│   │   └── components/
+│   │
+│   ├── profile/
+│   ├── appointments/
+│   ├── doctors/
+│   ├── patients/
+│   └── prescriptions/
+│
+├── components/
+│   ├── ui/
+│   ├── forms/
+│   └── layout/
+│
+├── lib/
+│   ├── axios.ts
+│   ├── auth.ts
+│   ├── query-client.ts
+│   └── utils.ts
+│
+├── hooks/
+│
+├── types/
+│
+├── constants/
+│
+└── middleware.ts
