@@ -1,0 +1,71 @@
+Based on the PDF scope, start with minimal UI that matches your 70% auth backend first, then expand by role. The backend includes roles: patient, doctor, admin, with auth, users/profile, appointments, medical records, prescriptions, payments, notifications, and admin APIs.
+
+Minimal pages you need first
+Phase 1 — Auth UI
+
+Build these first because backend auth is almost ready:
+
+/login
+/register
+/forgot-password
+/reset-password/[token]
+
+Also create shared auth components:
+
+AuthLayout
+LoginForm
+RegisterForm
+ForgotPasswordForm
+ResetPasswordForm
+Phase 2 — Base Dashboard Shell
+
+Before feature pages, create one clean dashboard layout:
+
+Sidebar
+Top navbar
+User dropdown
+Protected route handling
+Role-based navigation
+
+Route:
+
+src/app/(dashboard)/layout.tsx
+
+Phase 3 — First useful dashboard pages
+
+Create only these initially:
+
+/dashboard
+Role-based overview cards.
+/profile
+Uses GET /api/users/me and PATCH /api/users/me.
+/doctors
+Public/accessible doctor listing using GET /api/users/doctors.
+/appointments
+Appointment list + booking entry point.
+
+These align with the backend’s first practical modules: users and appointments.
+
+Hold for later
+
+Do not build these yet:
+
+/patients
+/prescriptions
+/payments
+/medical-records
+/notifications
+/admin/*
+
+They depend on later backend modules and role-specific flows.
+
+Recommended build order
+Set up ShadCN theme, layout, buttons, inputs, cards.
+Build auth pages.
+Add Axios client + auth token handling.
+Build protected dashboard layout.
+Build profile page.
+Build doctors page.
+Build appointments page.
+
+Start with: Auth UI + Dashboard Shell. Then we can build components step by step.
