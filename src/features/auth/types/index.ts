@@ -11,6 +11,8 @@ type RegisterPayload = {
   password: string;
   gender?: string;
   dateOfBirth?: string;
+  role?: 'patient' | 'doctor';
+  specialization?: string;
 };
 
 type ForgotPasswordPayload = {

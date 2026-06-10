@@ -15,16 +15,44 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { useMutation } from '@tanstack/react-query';
+import { registerUser } from '../api/auth-api';
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
+import { RegisterPayload } from '../types';
 
 export function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [role, setRole] = useState('patient');
+  const router = useRouter();
+
+  const { mutate } = useMutation({
+    mutationFn: registerUser,
+    onSuccess: (data) => {
+      toast.success(data.message);
+      router.push('/verify-email');
+    },
+
+    onError: (error: any) => {
+      toast.error(error.response?.data?.message || 'Registration failed');
+    },
+  });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // TODO:
-    // call register mutation here
+    const formData = new FormData(e.currentTarget);
+
+    const payload: RegisterPayload = {
+      firstName: formData.get('firstName') as string,
+      lastName: formData.get('lastName') as string,
+      email: formData.get('email') as string,
+      password: formData.get('password') as string,
+      role: formData.get('role') as 'patient' | 'doctor',
+      specialization: (formData.get('specialization') as string) || '',
+    };
+
+    mutate(payload);
   };
 
   return (
@@ -44,8 +72,13 @@ export function RegisterForm() {
 
         <form onSubmit={handleSubmit} className='space-y-5'>
           <div className='space-y-2'>
-            <Label htmlFor='name'>Full name</Label>
-            <Input id='name' name='name' placeholder='John Doe' required />
+            <Label htmlFor='firstName'>First name</Label>
+            <Input id='firstName' name='firstName' placeholder='John' required />
+          </div>
+
+          <div className='space-y-2'>
+            <Label htmlFor='lastName'>Last name</Label>
+            <Input id='lastName' name='lastName' placeholder='Doe' required />
           </div>
 
           <div className='space-y-2'>
